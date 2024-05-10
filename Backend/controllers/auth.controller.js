@@ -24,6 +24,7 @@ export const signup = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password,salt);
 
+        // random profile pic for the boy and girl users
         const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${userName}`;
         const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${userName}`;
 
@@ -37,12 +38,10 @@ export const signup = async (req, res) => {
         });
         
         if(newUser){
-
             //Generate JWT tokens 
             generateWebTokenAndSetCookie(newUser._id,res);
             
             await newUser.save(); //here we saved the new user data in the database
-
 
             //and this shows the data has been stored 
             res.status(201).json({
@@ -54,8 +53,7 @@ export const signup = async (req, res) => {
         }else{
             res.status(400).json({error: "Invalid User Data"});
         }
-
-
+        
     } catch (error) {
         console.log("Error in signUp controller",error.message);
         res.status(500).json({error: "Internal Server Error"});
