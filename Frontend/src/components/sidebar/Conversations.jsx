@@ -1,6 +1,6 @@
 import useGetConversations from '../../components/hooks/useGetConversations.js'
 import {getRandomEmoji} from '../../utils/emojis.js'
-import Conversation from "./Conversation";
+import Conversation from "./Conversation.jsx";
 
 const Conversations = () => {
   const { loading, conversations } = useGetConversations();

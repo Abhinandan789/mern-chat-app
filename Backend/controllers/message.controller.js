@@ -1,6 +1,8 @@
 import Conversation from '../models/conversation.model.js'
 import Message from '../models/message.model.js';
+import { getReceiverSocketId } from '../socket/socket.js';
 
+import { io } from "../socket/socket.js";
 
 export const sendMessage = async (req,res) =>{
     try {
@@ -29,15 +31,21 @@ export const sendMessage = async (req,res) =>{
 
 
         if(newMessage){
-            conversation.messages.push(newMessage._id);    
+            conversation.messages.push(newMessage._id);  
         };
 
+        //await conversation.save(); // these will run one by one firsr conversation save then newMesaage save so
+        //await newMessage.save(); //OR we can write something like this below
+        await Promise.all([conversation.save(), newMessage.save()]); // this will run both at same time 
+
         //SOCKET IO FUNCTION WILL GO HERE
+        const receiverSocketId = getReceiverSocketId(receiverId);
+        if(receiverSocketId != 'undefined'){
+            //io.to(<socketId>).emit() is used to send events to specific client 
+            io.to(receiverSocketId).emit("newMessage",newMessage);
+        }
 
 
-         //await conversation.save(); // these will run one by one firsr conversation save then newMesaage save so
-         //await newMessage.save(); //OR we can write something like this below
-        Promise.all([conversation.save(),newMessage.save()]); // this will run both at same time 
 
         res.status(201).json(newMessage);
 
