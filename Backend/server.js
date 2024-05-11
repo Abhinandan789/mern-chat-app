@@ -29,12 +29,12 @@ app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
 
 //DEPLOYMENT PART OF CODE
-app.use(express.static(path.join(__dirname,"/frontend/dist"))); 
+app.use(express.static(path.join(__dirname,"/Frontend/dist"))); 
 //{this will put everything in the chat-app/frontend/dist in the dist folder every sgatic code file in dist folder 
 //or this sets up Express.js to serve static files from the specified directory (frontend/dist) using the express.static middleware. So any files in the frontend/dist directory, such as HTML, CSS, JavaScript, images, etc., will be accessible from the web server.}
 
 app.get("*", (req,res) =>{
-    res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+    res.sendFile(path.join(__dirname, "Frontend", "dist", "index.html"));
 }); //with this we can now run our application with server too 
 
 
