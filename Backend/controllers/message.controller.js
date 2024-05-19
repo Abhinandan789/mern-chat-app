@@ -1,14 +1,21 @@
 import Conversation from '../models/conversation.model.js'
 import Message from '../models/message.model.js';
-import { getReceiverSocketId } from '../socket/socket.js';
+import { getReceiverSocketId, io } from '../socket/socket.js';
 
-import { io } from "../socket/socket.js";
+import User from "../models/user.model.js";
+
+
 
 export const sendMessage = async (req,res) =>{
     try {
         const {message} = req.body;
         const {id: receiverId} = req.params;
         const senderId = req.user._id;
+        const senderName = await User.findById(senderId).select('fullName'); // Only select fullName
+
+        if (!senderName) {
+            return res.status(404).json({ message: 'Sender user not found' });
+        }
 
 
         let conversation = await Conversation.findOne(
@@ -26,7 +33,8 @@ export const sendMessage = async (req,res) =>{
         const newMessage = new Message({
             senderId,
             receiverId,
-            message
+            message,
+            senderName
         });
 
 
