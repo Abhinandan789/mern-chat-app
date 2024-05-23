@@ -5,6 +5,7 @@ import './index.css'
 import {BrowserRouter} from 'react-router-dom'
 import { AuthContextProvider } from './context/AuthContext.jsx'
 import { SocketContextProvider } from './context/SocketContext.jsx'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -15,5 +16,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </SocketContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
-  </React.StrictMode>,
+    <SpeedInsights />
+  </React.StrictMode>
 )
