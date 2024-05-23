@@ -5,7 +5,7 @@ import './index.css'
 import {BrowserRouter} from 'react-router-dom'
 import { AuthContextProvider } from './context/AuthContext.jsx'
 import { SocketContextProvider } from './context/SocketContext.jsx'
-import DeviceDetection from '../DeviceDetection.jsx'
+import DeviceDetection from './DeviceDetection.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -15,7 +15,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <DeviceDetection>
             <App />
           </DeviceDetection>
-          
         </SocketContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
