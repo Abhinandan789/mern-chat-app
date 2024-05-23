@@ -16,8 +16,8 @@ const UserInfo = () => {
           <section className="block m-3">
               <div className="flex pl-3">
                 <div>
-                      <h3 className="bg-clip-text text-transparent bg-gradient-to-l from-[#005BC4] to-[#27272A] text-lg font-bold">{authUser.fullName}</h3>
-                      <h3 className="text-gray-600 font-semibold text-sm">{`Username : ${authUser.userName}`}</h3>
+                      <h3 className="bg-clip-text text-transparent bg-gradient-to-l text-white text-lg font-bold">{authUser.fullName}</h3>
+                      <h3 className="text-gray-300 font-semibold text-sm">{`Username : ${authUser.userName}`}</h3>
                 </div>
               </div>
           </section>

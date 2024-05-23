@@ -22,9 +22,9 @@ function Clock() {
     const date = currentTime.toLocaleDateString('en-US', { day: 'numeric', month: 'short'  });
 
     return (
-        <div className={`bg-clip-text text-transparent bg-gradient-to-l from-[#005BC4] to-[#27272A]  p-3 font-semibold text-sm`}>
+        <div className={`bg-clip-text text-transparent bg-gradient-to-l text-white  p-3 font-semibold text-sm `}>
 
-            <div className='ml-16'>
+            <div className='ml-10'>
                 {formattedHours}
                 <span className={blink ? 'opacity-0' : 'opacity-100'}>:</span>
                 {formattedMinutes} {period}
