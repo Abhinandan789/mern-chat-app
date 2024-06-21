@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 import authRoutes from './Routes/auth.routes.js';
 import messageRoutes from './Routes/message.routes.js';
 import userRoutes from './Routes/user.routes.js';
+import friendRoutes from './Routes/friends.routes.js';
 
 import cookieParser from 'cookie-parser';
 import connectToMongoDB from './db/connecttoMongoDB.js';
@@ -27,6 +28,7 @@ app.use(cookieParser());
 app.use("/api/auth",authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
+app.use('/api/friends', friendRoutes);
 
 //DEPLOYMENT PART OF CODE
 app.use(express.static(path.join(__dirname,"/Frontend/dist"))); 

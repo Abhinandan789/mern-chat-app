@@ -4,7 +4,8 @@ export const getUsersForSidebar = async (req,res) =>{
     try {
         const loggedInUserId = req.user._id;
         
-        const filteredUsers = await User.find({_id: {$ne: loggedInUserId}}).select("-password"); //this will basically show us users except us
+        const filteredUsers = await User.find({_id: {$ne: loggedInUserId}}).select("-password");
+         //this will basically show us the users list except us in that list
 
         res.status(200).json(filteredUsers);
 
